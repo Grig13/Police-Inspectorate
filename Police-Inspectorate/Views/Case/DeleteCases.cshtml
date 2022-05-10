@@ -1,0 +1,35 @@
+﻿@model Case
+
+<form method="post" asp-action = "Delete">
+    <input asp-for="Id" hidden />
+    <div class="border-bottom p-3 mt-4">
+        <h2 class="text-primary">Delete Case</h2>
+        <hr />
+    </div>
+    <div class="mb-3">
+        <label asp-for="BeginDate"></label>
+        <input asp-for="BeginDate" disabled class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="EndDate"></label>
+        <input asp-for="EndDate" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Status"></label>
+        <input asp-for="Status" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Agents"></label>
+        <input asp-for="Agents" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Suspects"></label>
+        <input asp-for="Suspects" />
+    </div>
+    <button type="submit" class="btn btn-danger" style="width:150px">Delete</button>
+    <a asp-controller="Case" asp-action="Index" class="btn btn-secondary" style="width:150px">Back to List</a>
+</form>
