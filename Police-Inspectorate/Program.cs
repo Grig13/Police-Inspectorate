@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<PoliceInspectorateContext>(options => options.UseSqlServer(
-    builder.Configuration.GetConnectionString("GConnection")
+    builder.Configuration.GetConnectionString("PoliceInspectorateDb")
     ));
 
 builder.Services.AddScoped<ICaseRepository, CaseRepository>();
