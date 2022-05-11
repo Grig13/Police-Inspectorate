@@ -17,6 +17,7 @@ namespace PoliceInspectorate.Context
         public DbSet<Request>? Requests { get; set; }
         public DbSet<Station>? Stations { get; set; }
         public DbSet<Suspect>? Suspects { get; set; }
+        public DbSet<Police_Inspectorate.Models.InspectorateChief>? InspectorateChief { get; set; }
 
 
 
