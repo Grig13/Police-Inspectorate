@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PoliceInspectorate.Context;
 
@@ -11,9 +12,10 @@ using PoliceInspectorate.Context;
 namespace Police_Inspectorate.Migrations
 {
     [DbContext(typeof(PoliceInspectorateContext))]
-    partial class PoliceInspectorateContextModelSnapshot : ModelSnapshot
+    [Migration("20220514102333_test3")]
+    partial class test3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,25 +52,6 @@ namespace Police_Inspectorate.Migrations
                     b.HasIndex("MeetingsId");
 
                     b.ToTable("MeetingPoliceAgent");
-                });
-
-            modelBuilder.Entity("Police_Inspectorate.Models.Account", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Account");
                 });
 
             modelBuilder.Entity("Police_Inspectorate.Models.Case", b =>
@@ -113,8 +96,13 @@ namespace Police_Inspectorate.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserName")
-                        .HasColumnType("int");
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PoliceInspectorate.Context;
 using Police_Inspectorate.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Police_Inspectorate.Controllers
 {
@@ -21,12 +22,14 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: Suspects
+        [Authorize(Roles = "Admin, User")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Suspects.ToListAsync());
         }
 
         // GET: Suspects/Details/5
+        [Authorize(Roles = "Admin, User")]
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -45,6 +48,7 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: Suspects/Create
+        [Authorize(Roles = "Admin, User")]
         public IActionResult Create()
         {
             return View();
@@ -55,6 +59,7 @@ namespace Police_Inspectorate.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, User")]
         public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Age,Record,Address")] Suspect suspect)
         {
             if (ModelState.IsValid)
@@ -68,6 +73,7 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: Suspects/Edit/5
+        [Authorize(Roles = "Admin, User")]
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -88,6 +94,7 @@ namespace Police_Inspectorate.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, User")]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,FirstName,LastName,Age,Record,Address")] Suspect suspect)
         {
             if (id != suspect.Id)
@@ -119,6 +126,7 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: Suspects/Delete/5
+        [Authorize(Roles = "Admin, User")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -139,6 +147,7 @@ namespace Police_Inspectorate.Controllers
         // POST: Suspects/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, User")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var suspect = await _context.Suspects.FindAsync(id);

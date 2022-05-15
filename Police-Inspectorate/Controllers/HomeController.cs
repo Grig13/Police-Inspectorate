@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Police_Inspectorate.Models;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Police_Inspectorate.Controllers
 {
@@ -13,11 +14,13 @@ namespace Police_Inspectorate.Controllers
             _logger = logger;
         }
 
+        [Authorize(Roles = "Admin, User")]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin, User")]
         public IActionResult Privacy()
         {
             return View();
