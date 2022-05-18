@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Police_Inspectorate.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class InspectorateChiefsController : Controller
     {
         private readonly PoliceInspectorateContext _context;
@@ -20,7 +21,7 @@ namespace Police_Inspectorate.Controllers
             _context = context;
         }
 
-        [Authorize(Roles = "Admin, User")]
+
         // GET: InspectorateChiefs
         public async Task<IActionResult> Index()
         {
@@ -28,7 +29,7 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: InspectorateChiefs/Details/5
-        [Authorize(Roles = "Admin, User")]
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.InspectorateChief == null)
@@ -47,7 +48,7 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: InspectorateChiefs/Create
-        [Authorize(Roles = "Admin")]
+
         public IActionResult Create()
         {
             return View();
@@ -58,7 +59,7 @@ namespace Police_Inspectorate.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Create([Bind("Id,UserName,FirstName,LastName,Age")] InspectorateChief inspectorateChief)
         {
             if (ModelState.IsValid)
@@ -72,7 +73,7 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: InspectorateChiefs/Edit/5
-        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.InspectorateChief == null)
@@ -93,7 +94,7 @@ namespace Police_Inspectorate.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,UserName,FirstName,LastName,Age")] InspectorateChief inspectorateChief)
         {
             if (id != inspectorateChief.Id)
@@ -125,7 +126,7 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: InspectorateChiefs/Delete/5
-        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.InspectorateChief == null)
@@ -146,7 +147,7 @@ namespace Police_Inspectorate.Controllers
         // POST: InspectorateChiefs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.InspectorateChief == null)

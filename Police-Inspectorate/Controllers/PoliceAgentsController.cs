@@ -22,14 +22,14 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: PoliceAgents
-        [Authorize(Roles = "Admin, User")]
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.PoliceAgents.ToListAsync());
         }
 
         // GET: PoliceAgents/Details/5
-        [Authorize(Roles = "Admin, User")]
+        [Authorize]
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -47,8 +47,9 @@ namespace Police_Inspectorate.Controllers
             return View(policeAgent);
         }
 
-        [Authorize(Roles = "Admin")]
+
         // GET: PoliceAgents/Create
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
@@ -57,9 +58,10 @@ namespace Police_Inspectorate.Controllers
         // POST: PoliceAgents/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin")]
+
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Create([Bind("Id,UserName,StationNumber,FirstName,LastName,Age,StationChief")] PoliceAgent policeAgent)
         {
             if (ModelState.IsValid)
@@ -73,7 +75,7 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: PoliceAgents/Edit/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -94,7 +96,7 @@ namespace Police_Inspectorate.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,UserName,StationNumber,FirstName,LastName,Age,StationChief")] PoliceAgent policeAgent)
         {
             if (id != policeAgent.Id)
@@ -126,7 +128,7 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: PoliceAgents/Delete/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -145,9 +147,10 @@ namespace Police_Inspectorate.Controllers
         }
 
         // POST: PoliceAgents/Delete/5
-        [Authorize(Roles = "Admin")]
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var policeAgent = await _context.PoliceAgents.FindAsync(id);
