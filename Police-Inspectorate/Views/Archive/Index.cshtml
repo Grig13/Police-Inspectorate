@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Police_Inspectorate.Models.Case>
+
+@{
+    ViewData["Title"] = "Archive";
+}
+
+<h1>Archive</h1>
+
+<p>
+    <a asp-action="Create">Add new case</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Case number
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BeginDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{int x = 1;}
+        @foreach (var item in Model) {
+            
+            
+            DateTime cmpdt = DateTime.Today;
+            TimeSpan diffspan = new TimeSpan(3650,0,0,0);
+            cmpdt -= diffspan;
+            int res=DateTime.Compare(item.BeginDate,cmpdt);
+            if (res < 0)
+            {
+                <tr>
+            <td>
+                @Html.DisplayName(x.ToString())
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BeginDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+                </tr>
+             x++;
+            }
+           
+        }
+    </tbody>
+</table>
