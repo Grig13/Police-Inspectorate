@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Police_Inspectorate.Models;
 
 namespace PoliceInspectorate.Context
 {
-    public class PoliceInspectorateContext : DbContext
+    public class PoliceInspectorateContext :   IdentityDbContext<IdentityUser>
     {
         public PoliceInspectorateContext(DbContextOptions<PoliceInspectorateContext> options)
 

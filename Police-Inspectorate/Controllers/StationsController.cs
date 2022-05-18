@@ -21,14 +21,14 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: Stations
-        [Authorize(Roles = "Admin, User")]
+
         public async Task<IActionResult> Index()
         {
             return View(await _context.Stations.ToListAsync());
         }
 
         // GET: Stations/Details/5
-        [Authorize(Roles = "Admin, User")]
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.Stations == null)
@@ -47,7 +47,7 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: Stations/Create
-        [Authorize(Roles = "Admin")]
+
         public IActionResult Create()
         {
             return View();
@@ -58,7 +58,7 @@ namespace Police_Inspectorate.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Create([Bind("Id,Location")] Station station)
         {
             if (ModelState.IsValid)
@@ -72,7 +72,7 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: Stations/Edit/5
-        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.Stations == null)
@@ -93,7 +93,7 @@ namespace Police_Inspectorate.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,Location")] Station station)
         {
             if (id != station.Id)
@@ -125,7 +125,7 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: Stations/Delete/5
-        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Stations == null)
@@ -146,7 +146,7 @@ namespace Police_Inspectorate.Controllers
         // POST: Stations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+ 
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.Stations == null)

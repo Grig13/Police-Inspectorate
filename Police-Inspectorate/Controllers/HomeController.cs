@@ -14,13 +14,13 @@ namespace Police_Inspectorate.Controllers
             _logger = logger;
         }
 
-        [Authorize(Roles = "Admin, User")]
+
         public IActionResult Index()
         {
             return View();
         }
 
-        [Authorize(Roles = "Admin, User")]
+
         public IActionResult Privacy()
         {
             return View();
