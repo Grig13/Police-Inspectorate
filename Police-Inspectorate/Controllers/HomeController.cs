@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Police_Inspectorate.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -14,12 +15,10 @@ namespace Police_Inspectorate.Controllers
             _logger = logger;
         }
 
-
         public IActionResult Index()
         {
             return View();
         }
-
 
         public IActionResult Privacy()
         {

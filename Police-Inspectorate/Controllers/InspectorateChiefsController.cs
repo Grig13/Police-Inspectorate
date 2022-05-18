@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Police_Inspectorate.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class InspectorateChiefsController : Controller
     {
         private readonly PoliceInspectorateContext _context;

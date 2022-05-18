@@ -21,7 +21,7 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: Meetings
-
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Meetings.ToListAsync());
@@ -29,6 +29,7 @@ namespace Police_Inspectorate.Controllers
 
         // GET: Meetings/Details/5
 
+        [Authorize]
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.Meetings == null)
@@ -47,7 +48,7 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: Meetings/Create
-
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
@@ -58,6 +59,7 @@ namespace Police_Inspectorate.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Create([Bind("Id")] Meeting meeting)
         {
             if (ModelState.IsValid)
@@ -71,7 +73,7 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: Meetings/Edit/5
-
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.Meetings == null)
@@ -92,7 +94,7 @@ namespace Police_Inspectorate.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id")] Meeting meeting)
         {
             if (id != meeting.Id)
@@ -124,7 +126,7 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: Meetings/Delete/5
-
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Meetings == null)
@@ -145,7 +147,7 @@ namespace Police_Inspectorate.Controllers
         // POST: Meetings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.Meetings == null)

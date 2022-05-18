@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Police_Inspectorate.Controllers
 {
+    [Authorize]
     public class RequestsController : Controller
     {
         private readonly PoliceInspectorateContext _context;
@@ -22,14 +23,12 @@ namespace Police_Inspectorate.Controllers
         }
 
         // GET: Requests
-
         public async Task<IActionResult> Index()
         {
             return View(await _context.Requests.ToListAsync());
         }
 
         // GET: Requests/Details/5
-
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)

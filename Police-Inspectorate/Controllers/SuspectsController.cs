@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Police_Inspectorate.Controllers
 {
+    [Authorize]
     public class SuspectsController : Controller
     {
         private readonly PoliceInspectorateContext _context;
