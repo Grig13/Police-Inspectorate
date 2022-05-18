@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                Case number
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.BeginDate)
             </th>
             <th>
@@ -28,7 +31,10 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @{int x = 1;}
+        @foreach (var item in Model) {
+            
+            
             DateTime cmpdt = DateTime.Today;
             TimeSpan diffspan = new TimeSpan(3650,0,0,0);
             cmpdt -= diffspan;
@@ -36,7 +42,10 @@
             if (res < 0)
             {
                 <tr>
-                    <td>
+            <td>
+                @Html.DisplayName(x.ToString())
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.BeginDate)
             </td>
             <td>
@@ -53,8 +62,10 @@
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
-        </tr>
+                </tr>
+             x++;
+            }
+           
         }
-}
     </tbody>
 </table>
