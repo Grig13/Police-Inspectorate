@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Police_Inspectorate.Models;
 using Police_Inspectorate.Repositories;
 using Police_Inspectorate.Repositories.Interfaces;
@@ -14,12 +15,14 @@ namespace Police_Inspectorate.Controllers
             _CaseRepository = CaseRepository;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             IEnumerable<Case> caseList = _CaseRepository.GetAll();
             return View(caseList);
         }
 
+        [Authorize(Roles = "Administrator")]
         public IActionResult CreateCases()
         {
             return View();
@@ -27,12 +30,14 @@ namespace Police_Inspectorate.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public IActionResult CreateCases(Case cases)
         {
             _CaseRepository.Create(cases);
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Administrator")]
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
@@ -50,8 +55,10 @@ namespace Police_Inspectorate.Controllers
             return View(categoryFromDb);
         }
 
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public IActionResult DeleteCases(Case cases)
         {
             _CaseRepository.Delete(cases);

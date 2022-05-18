@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Police_Inspectorate.Models;
 
 namespace PoliceInspectorate.Context
 {
-    public class PoliceInspectorateContext : DbContext
+    public class PoliceInspectorateContext :   IdentityDbContext<IdentityUser>
     {
         public PoliceInspectorateContext(DbContextOptions<PoliceInspectorateContext> options)
 
@@ -17,6 +19,7 @@ namespace PoliceInspectorate.Context
         public DbSet<Request>? Requests { get; set; }
         public DbSet<Station>? Stations { get; set; }
         public DbSet<Suspect>? Suspects { get; set; }
+        public DbSet<Account>? Account { get; set; }
         public DbSet<Police_Inspectorate.Models.InspectorateChief>? InspectorateChief { get; set; }
 
 
