@@ -5,7 +5,7 @@ using Police_Inspectorate.Repositories;
 using Police_Inspectorate.Repositories.Interfaces;
 using PoliceInspectorate.Context;
 using Microsoft.AspNetCore.Identity;
-
+using Police_Inspectorate.Chat;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("PoliceInspectorateDb") ?? throw new InvalidOperationException("Connection string 'PoliceInspectorateDb' not found.");
@@ -14,6 +14,7 @@ builder.Services.AddDbContext<PoliceInspectorateContext>(options =>
     options.UseSqlServer(connectionString));;
 
 builder.Services.AddRazorPages();
+builder.Services.AddSignalR();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
@@ -34,6 +35,7 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -42,6 +44,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.MapHub<ChatHub>("/ChatHub");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
