@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Police_Inspectorate.Chat;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("PoliceInspectorateDb") ?? throw new InvalidOperationException("Connection string 'PoliceInspectorateDb' not found.");
+var connectionString = builder.Configuration.GetConnectionString("PoliceInspectorateContextConnection") ?? throw new InvalidOperationException("Connection string 'PoliceInspectorateDb' not found.");
 
 builder.Services.AddDbContext<PoliceInspectorateContext>(options =>
     options.UseSqlServer(connectionString));;
@@ -20,7 +20,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<PoliceInspectorateContext>();
 builder.Services.AddDbContext<PoliceInspectorateContext>(options => 
-    options.UseSqlServer(builder.Configuration.GetConnectionString("PoliceInspectorateDb")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PoliceInspectorateContextConnection")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
