@@ -84,14 +84,14 @@ namespace Police_Inspectorate.Controllers
 
         // GET: Stations/Edit/5
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(Station station, Guid? id)
         {
             if (id == null || _context.Stations == null)
             {
                 return NotFound();
             }
 
-            var station = await _context.Stations.FindAsync(id);
+            
             if (station == null)
             {
                 return NotFound();
