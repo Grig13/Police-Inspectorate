@@ -27,6 +27,16 @@ namespace Police_Inspectorate.Controllers
             return View(await _context.Stations.ToListAsync());
         }
 
+        public object DeleteConfirmed(Station station)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Delete(Station station)
+        {
+            throw new NotImplementedException();
+        }
+
         // GET: Stations/Details/5
         [Authorize]
         public async Task<IActionResult> Details(Guid? id)
